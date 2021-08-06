@@ -1,5 +1,5 @@
 CC=cc
-CFLAGS=-Wall
+CFLAGS=
 
 clr:
 	$(CC) $(CFLAGS) clr.c -o clr
