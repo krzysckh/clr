@@ -6,10 +6,20 @@ typedef int bool;
 #define false 0
 
 char* show = "█████████";
+float bgHTML = -1;
+
+bool onlyOne = false;
+
 
 float hexVal(char c);
 int getHTML(char* code);
-void printcolor(int red, int green, int blue, char* mess);
+void setfg(int red, int green, int blue);
+void setbg(int red, int green, int blue);
+void resc();
+
+
+
+
 int r, g, b;
 
 int main(int argc, char* argv[]) {
@@ -30,9 +40,20 @@ int main(int argc, char* argv[]) {
 				show = argv[i+1];
 				i++;
 			} else {
-				fprintf(stderr, "value for '-s' can't be NULL\n");
+				fprintf(stderr, "value for '%s' can't be NULL\n", argv[i]);
 				return 1;
 			}
+		} else if (strcmp("--bg", argv[i]) == 0) {
+			if (argv[i+1] != NULL) {
+				color[colorcount] = argv[i+1];
+				bgHTML = colorcount;
+				colorcount++;
+			} else {
+				fprintf(stderr, "value for '%s' can't be NULL\n", argv[i]);
+				return 1;
+			}
+		} else if (strcmp("-O", argv[i]) == 0) {
+			onlyOne = true;
 		} else {
 			color[colorcount] = argv[i];
 			colorcount++;
@@ -47,10 +68,25 @@ int main(int argc, char* argv[]) {
 		if (getHTML(color[i])) {
 			return 1;
 		} else {
-			printcolor(r, g, b, show);
+			if (i == bgHTML) {
+				setbg(r, g, b);
+			} else {
+				setfg(r, g, b);
+			}
+
+			if (onlyOne == false) {
+				printf("%s\n", show);
+			}
 		}
 	}
 
+
+	if (onlyOne == true) { 
+		printf("%s\n", show);
+	}
+
+
+	resc();
 	return 0;
 }
 
@@ -141,6 +177,14 @@ int getHTML(char* code) {
 	
 }
 
-void printcolor(int red, int green, int blue, char* mess) {
-	printf("\x1b[38;2;%d;%d;%dm%s\x1b[0m\n", red, green, blue, mess);
+void setfg(int red, int green, int blue) {
+	printf("\x1b[38;2;%d;%d;%dm", red, green, blue);
+}
+
+void setbg(int red, int green, int blue) {
+	printf("\x1b[48;2;%d;%d;%dm", red, green, blue);
+}
+
+void resc() {
+	printf("\x1b[0m");
 }

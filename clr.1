@@ -1,0 +1,19 @@
+.TH "clr" "1"
+.SH "name"
+\fBclr\fR \- show html color codes in truecolor terminals
+.SH "synopsis"
+clr [arguments] #color [#color...]
+.SH "arguments"
+	\-\-show <str> / -s <str>	\-	sets a message
+.P
+	\-\-bg <#color>			\-	sets background color
+.P
+	\-O				\-	displays message only once
+.SH "examples"
+	clr -O --bg "#fff" "#000" -s "test"
+.P
+		displays a black word "test" on a white background
+.P
+	clr $(cat $HOME/.cache/wal/colors | sed 's/\\n/ /')
+.P
+		shows current pywal-generated colors
