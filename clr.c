@@ -166,7 +166,6 @@ int getHTML(char* code) {
 	}
 
 	if (rf < 0 || gf < 0 || bf < 0) { 
-		printf("fuck, r: %f, g: %f, b: %f\n",rf,gf,bf);
 		fprintf(stderr, "bad html code\n");
 		return 1;
 	}
