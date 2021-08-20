@@ -18,8 +18,6 @@ void setbg(int red, int green, int blue);
 void resc();
 
 
-
-
 int r, g, b;
 
 int main(int argc, char* argv[]) {
@@ -28,12 +26,7 @@ int main(int argc, char* argv[]) {
 	int i = 1;
 	while (i < argc) {
 		if (strcmp("--help", argv[i]) == 0 || strcmp("-h", argv[i]) == 0) {
-			printf(
-					"\n"
-					"\tclr\t\t-\tshows a html color in terminal\n"
-					"\n"
-					"\t\tusage:\tman clr\n\n"
-			      );
+			printf("usage: clr [-h] [-s] [--bg color] [-O] color [color2 color3...]\n");
 			return 0;
 		} else if (strcmp("-s", argv[i]) == 0 || strcmp("--show", argv[i]) == 0) {
 			if (argv[i+1] != NULL) {
