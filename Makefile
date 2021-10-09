@@ -1,17 +1,12 @@
-CC=cc
-CFLAGS=-Wall
-prefix=/usr
-prefix_man=/usr/share
-clr:
-	$(CC) $(CFLAGS) clr.c -o clr
+CFLAGS=-Wall -std=c99
+PREFIX=/usr
 
+all: clr
 clean:
 	rm clr
-
-install: clr
-	cp clr $(prefix)/bin/clr
-	cp clr.1 $(prefix_man)/man/man1/clr.1
-
+install: all
+	cp clr $(PREFIX)/bin/clr
+	cp clr.1 $(PREFIX)/share/man/man1/clr.1
 uninstall:
-	rm $(prefix)/bin/clr
-	rm $(prefix_man)/man/man1/clr.1
+	rm $(PREFIX)/bin/clr
+	rm $(PREFIX)/share/man/man1/clr.1
