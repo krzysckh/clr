@@ -14,8 +14,6 @@ sudo make install
 # usage
 
 ```
-CLR(1)				 General Commands Manual			   CLR(1)
-
 NAME
        clr - show html color codes in truecolor terminals
 
@@ -40,6 +38,4 @@ EXAMPLES
 
 AUTHOR
        krzysckh (github.com/krzysckh)
-
-										   CLR(1)
 ```
